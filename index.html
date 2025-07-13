@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>시군구 인구이동 시각화</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <link rel="stylesheet" href="style.css"> </head>
+<body>
+  <div id="map-container">
+    <svg id="map-svg"></svg>
+    <canvas id="particle-canvas"></canvas>
+  </div>
+  <div class="ui-container">
+    <div class="loading" id="loading">데이터 로딩 중...</div>
+    <div class="controls" style="display:none;" id="controls">
+      <h4 style="margin:0 0 10px 0;">시군구 인구이동 <label><span id="yearDisplay">2024</span></label></h4>
+      <input type="range" id="yearSlider" min="2012" max="2024" value="2024" style="width:100%;">
+      <div class="flow-controls">
+        <label><input type="checkbox" id="inflow-checkbox" checked> <span style="color: #66ff66;">■</span> 전입</label>
+        <label><input type="checkbox" id="outflow-checkbox" checked> <span style="color: #ff6666;">■</span> 전출</label>
+      </div>
+    </div>
+  </div>
+
+  <script src="visualization.js" defer></script>
+</body>
+</html>

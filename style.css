@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  background: #222;
+  font-family: 'Noto Sans KR', sans-serif;
+  overflow: hidden;
+}
+
+#map-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#map-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+#map-svg:active {
+  cursor: grabbing;
+}
+
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.municipality {
+  fill: #444;
+  stroke: #555;
+  stroke-width: 0.3;
+  transition: fill 0.2s;
+}
+
+.municipality.selected {
+  fill: #a3a34b; /* 선택 지역 하이라이트 색상 변경 */
+}
+
+.ui-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 20px 25px 20px;
+  color: white;
+  font-size: 15px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  z-index: 2000;
+}
+
+.label {
+  text-anchor: middle;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.region-label {
+  fill: #ccc;
+  font-size: 3px;
+  font-weight: 300;
+  opacity: 0;
+}
+
+.province-label {
+  fill: #fff;
+  font-size: 8px;
+  font-weight: 500;
+  opacity: 1;
+}
+
+.flow-controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+.flow-controls label {
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.flow-controls input {
+  margin-right: 5px;
+}
