@@ -8,3 +8,6 @@ This data visualises the net migration of the population by city, county, and di
 Inspired by German media outlet Zeit's visualisation project on population migration between East and West Germany.
 https://www.zeit.de/politik/deutschland/2019-05/ost-west-wanderung-abwanderung-ostdeutschland-umzug
 It was created using data on migration from Statistics Korea. Click on a district to view its net migration.
+For a working web page, refer to my GitHub page.
+
+https://zigbee0.github.io/s.korea-polulation-movement/
