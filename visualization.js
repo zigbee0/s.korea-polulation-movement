@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < 1) { this.duration = Infinity; return; }
                 this.duration = 7000 + Math.random() * 3000;
-                this.size = 0.1 + Math.random() * 1;
+                this.size = 0.9 + Math.random() * 1;
             },
             update: function(deltaTime) {
                 if (this.duration === Infinity) return;
@@ -223,8 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.translate(canvasTransform.x, canvasTransform.y);
         ctx.scale(canvasTransform.k, canvasTransform.k);
         
+// ... 이전 코드 ...
+
         ctx.strokeStyle = "rgba(255, 234, 0, 0.07)";
-        ctx.lineWidth = 0.5;
+        ctx.lineWidth = 0.5 / Math.log(canvasTransform.k * 3); // 라인 두께를 줌 스케일로 나눔
         ctx.beginPath();
         migrationPaths.forEach(path => {
             ctx.moveTo(path.start.projX, path.start.projY);
@@ -236,11 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const inflowColor = 'rgba(102, 255, 102, 0.7)';
         const outflowColor = 'rgba(255, 102, 102, 0.7)';
 
+        const particleRadius = p => (p.size * 0.5) / Math.log(canvasTransform.k * 3); // 파티클 크기를 줌 스케일로 나눔
+
         ctx.fillStyle = normalColor;
         ctx.beginPath();
         particles.filter(p => p.type === 'normal' && p.progress > 0).forEach(p => {
             ctx.moveTo(p.x, p.y);
-            ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, particleRadius(p), 0, Math.PI * 2);
         });
         ctx.fill();
 
@@ -248,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         particles.filter(p => p.type === 'inflow' && p.progress > 0).forEach(p => {
             ctx.moveTo(p.x, p.y);
-            ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, particleRadius(p), 0, Math.PI * 2);
         });
         ctx.fill();
 
@@ -256,9 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         particles.filter(p => p.type === 'outflow' && p.progress > 0).forEach(p => {
             ctx.moveTo(p.x, p.y);
-            ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, particleRadius(p), 0, Math.PI * 2);
         });
         ctx.fill();
+
+        // ... 이후 코드 ...
 
         ctx.restore();
         animationFrameId = requestAnimationFrame(animationLoop);
