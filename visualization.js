@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 변수 선언
+    // Variable declaration
     const TOPO_URL = "./merged_map.json";
     const MIGRATION_DATA_URL = "./migration_sigungu.csv";
     const sigunguObjectKey = '법정구역_시군구_simplified';
@@ -223,10 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.translate(canvasTransform.x, canvasTransform.y);
         ctx.scale(canvasTransform.k, canvasTransform.k);
         
-// ... 이전 코드 ...
 
         ctx.strokeStyle = "rgba(255, 234, 0, 0.07)";
-        ctx.lineWidth = 0.5 / Math.log(canvasTransform.k * 3); // 라인 두께를 줌 스케일로 나눔
+        ctx.lineWidth = 0.5 / Math.log(canvasTransform.k * 3); // Divide line thickness by zoom scale
         ctx.beginPath();
         migrationPaths.forEach(path => {
             ctx.moveTo(path.start.projX, path.start.projY);
@@ -238,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inflowColor = 'rgba(102, 255, 102, 0.7)';
         const outflowColor = 'rgba(255, 102, 102, 0.7)';
 
-        const particleRadius = p => (p.size * 0.5) / Math.log(canvasTransform.k * 3); // 파티클 크기를 줌 스케일로 나눔
+        const particleRadius = p => (p.size * 0.5) / Math.log(canvasTransform.k * 3); //  Dividing particle size by zoom scale
 
         ctx.fillStyle = normalColor;
         ctx.beginPath();
@@ -264,7 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         ctx.fill();
 
-        // ... 이후 코드 ...
 
         ctx.restore();
         animationFrameId = requestAnimationFrame(animationLoop);
